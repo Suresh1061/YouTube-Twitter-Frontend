@@ -2,20 +2,17 @@ import React from 'react'
 import Header from './components/header/Header'
 import { Outlet } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { toggleVideoLike } from '../../server/src/controllers/like.controller'
-import { findVideo } from './store/slices/videoSlice'
 
 const App = () => {
   const dispatch = useDispatch()
   return (
     <div>
-      {/* <div>
+      <div>
         <Header />
         <main>
           <Outlet />
         </main>
-      </div> */}
-      <button onClick={() => dispatch(findVideo('65b54a6f3b4c9a1a9c6fa272'))}>click</button>
+      </div>
     </div>
   )
 }

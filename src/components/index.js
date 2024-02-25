@@ -7,6 +7,7 @@ import LogIn from "./login";
 import Container from "./container/container";
 import Header from "./header/Header";
 import Loading from "./Loading";
+import AuthLayout from "./AuthLayout";
 
 export {
     Input,
@@ -18,4 +19,5 @@ export {
     Container,
     Header,
     Loading,
+    AuthLayout
 }

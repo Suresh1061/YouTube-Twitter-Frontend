@@ -17,7 +17,7 @@ const Header = () => {
   // console.log(authStatus, " ", profileImg)
   return (
     <div >
-      <nav className=' w-full h-[70px] flex justify-between items-center bg-slate-800 shadow border-b border-gray-500  sticky top-0  px-10'> {/*  bg-slate-800 shadow border-b border-gray-500 */}
+      <nav className=' w-full h-[70px] flex justify-between items-center bg-[#121212] shadow border-b border-gray-600  sticky top-0  px-10'> {/*  bg-slate-800 shadow border-b border-gray-500 */}
         <div>
           <Link>
             <Logo />

@@ -46,7 +46,7 @@ const LeftBar = () => {
     ]
 
     return (
-        <div className=' bg-slate-800 w-[300px] text-white h-screen mt-[-70px] py-6 px-3 flex flex-col justify-between'>
+        <div className=' bg-[#121212] border-r border-gray-600 w-[300px] text-white h-screen mt-[-70px] py-6 px-3 flex flex-col justify-between'>
             <div className=' mt-[70px]'>
                 {
                     sideItems.map(items => (
