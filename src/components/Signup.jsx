@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Input, Button, Icon } from './index.js'
+import { Input, Button, Icon, Logo } from './index.js'
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { createAccount } from '../store/slices/authSlice.js'
@@ -22,16 +22,17 @@ const Signup = () => {
             console.log(errors)
         }
     }
-    
+
     return (
-        <div className=' flex justify-center items-center w-full'>
-            <div className=' max-w-3xl mx-auto shadow-lg border border-slate-600 rounded-lg px-10 py-6 bg-[#232323] text-white'>
+        <div className=' w-full h-screen flex justify-center items-start text-white p-3 sm:mt-8'>
+            <div className=' max-w-3xl mx-auto shadow-lg border border-gray-600 rounded-lg px-10 py-6 '>
                 <div className=' mb-4 flex justify-center items-center'>
-                    <Icon width=" w-24" />
+                    <Logo />
                 </div>
                 <form onSubmit={handleSubmit(create)}>
                     <div className=' space-y-5'>
                         <Input
+                            className="rounded-lg"
                             label="Username : "
                             placeholder="Enter your username"
                             {...register("username", {
@@ -45,6 +46,7 @@ const Signup = () => {
                                 </span>
                             )}
                         <Input
+                            className="rounded-lg"
                             label="Full Name : "
                             placeholder=" Enter your full name"
                             {...register('fullName', {
@@ -58,6 +60,7 @@ const Signup = () => {
                                 </span>
                             )}
                         <Input
+                            className="rounded-lg"
                             label="Email : "
                             type="email"
                             placeholder=" Enter your email address"
@@ -74,6 +77,7 @@ const Signup = () => {
                                 </span>
                             )}
                         <Input
+                            className="rounded-lg"
                             label="Password : "
                             type="password"
                             placeholder=" Enter your password"
@@ -88,6 +92,7 @@ const Signup = () => {
                                 </span>
                             )}
                         <Input
+                            className="rounded-lg"
                             label="Profile Picture : "
                             type='file'
                             placeholder=''
@@ -103,7 +108,7 @@ const Signup = () => {
                             )}
                         <Button
                             type='submit'
-                            className=' w-full hover:bg-[#ae7aff]'
+                            className=' w-full hover:bg-[#ae7aff] py-2 rounded-lg'
                         >
                             Create Account</Button>
                         <p className=' text-center text-sm'>

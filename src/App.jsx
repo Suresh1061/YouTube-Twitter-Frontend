@@ -1,98 +1,115 @@
-import React from 'react'
-import Header from './components/header/Header'
-import { Outlet } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import axios from 'axios'
+import { Routes, useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { Route } from 'react-router-dom'
+import { Home } from './pages/index.js'
+import { AuthLayout, Login, Signup, Video } from './components'
+import Layout from './Layout.jsx'
+import { getCurrentUser } from './store/slices/authSlice.js'
+import LikedVideos from './pages/LikedVideos.jsx'
+import History from './pages/History.jsx'
+import Subscribers from './pages/Subscribers.jsx'
+import AdminDashboard from './pages/Admin/AdminDashboard.jsx'
+import Channel from './pages/Channel/Channel.jsx'
+import VideoDetails from './pages/VideoDetails.jsx'
+
+axios.defaults.withCredentials = true
 
 const App = () => {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
+  useEffect(() => {
+    try {
+      dispatch(getCurrentUser())
+    } catch (error) {
+      navigate("/login")
+    }
+  }, [dispatch])
+
   return (
-    <div>
-      <div>
-        <Header />
-        <main>
-          <Outlet />
-        </main>
-      </div>
-    </div>
+    <>
+      <Routes>
+        <Route
+          path='/'
+          element={<Layout />}
+        >
+          <Route
+            path=''
+            element={
+              <AuthLayout authentication>
+                <Home />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path='/liked-videos'
+            element={
+              <AuthLayout authentication>
+                <LikedVideos />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path='/history'
+            element={
+              <AuthLayout authentication>
+                <History />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path='/channel/:username'
+            element={
+              <AuthLayout authentication>
+                <Channel />
+              </AuthLayout>
+            }
+          />
+          <Route
+            path='/subscribers'
+            element={
+              <AuthLayout authentication>
+                <Subscribers />
+              </AuthLayout>
+            }
+          />
+        </Route>
+        <Route
+          path='/collection'
+          element={
+            <AuthLayout authentication>
+              <AdminDashboard />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path='/login'
+          element={
+            <AuthLayout authentication={false}>
+              <Login />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path='/signup'
+          element={
+            <AuthLayout authentication={false}>
+              <Signup />
+            </AuthLayout>
+          }
+        />
+        <Route
+          path='/watch/:videoId'
+          element={
+            <AuthLayout authentication>
+              <VideoDetails />
+            </AuthLayout>
+          }
+        />
+      </Routes>
+    </>
   )
 }
 
 export default App
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react'
-// import axios from 'axios'
-// import Input from './components/Input'
-// import Button from './components/Button'
-
-// const App = () => {
-//   const [user, setUser] = useState({name:"", email:'', password:'', avatar:''})
-//   const handelChange = (e) => {
-//     const { name, value } = e.target;
-//     setUser({
-//       ...user, [name] : value
-//     })
-//   }
-
-//   const handelSubmit = async (e) => { 
-//     e.preventDefault();
-//     console.log(user);
-//     const { name, email, password, avatar } = user;
-//     const formData = new FormData()
-//     formData.append('username', name)
-//     formData.append('email', email)
-//     formData.append('password', password)
-//     formData.append('avatar', avatar)
-//     try {
-
-//       const res = await axios.post('http://localhost:8000/api/v1/users/register', formData)
-//       console.log(res)
-
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   }
-
-//   return (
-//     // <form onSubmit={handelSubmit}>
-//     //   <label htmlFor=""> name :
-//     //     <input type="text" name='name' onChange={handelChange} />
-//     //   </label>
-//     //   <label htmlFor="">
-//     //     email:
-//     //     <input type="text" name='email' onChange={handelChange} />
-//     //   </label>
-//     //   <label htmlFor="">
-//     //     password:
-//     //     <input type="text" name='password' onChange={handelChange} />
-//     //   </label>
-//     //   <label htmlFor="">
-//     //     avatar:
-//     //     <input type="file" accept='.png, .jpg, .jpeg' onChange={(e)=>setUser({...user, avatar:e.target.files[0]})}/>
-//     //   </label>
-//     //   <button type='submit'>submit</button>
-//     // </form>
-//     // <Input/>
-//     <>
-//   <Button/>
-//     </>
-//   )
-// }
-
-// export default App
-
-

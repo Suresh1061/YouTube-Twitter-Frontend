@@ -62,7 +62,7 @@ export const userLogin = createAsyncThunk('login', async (data) => {
 export const userLogout = createAsyncThunk('logout', async () => {
     try {
         await axios.post('http://localhost:3000/api/v1/users/logout')
-        message.success(res.data?.message)
+        message.success("log out successfully")
     } catch (error) {
         message.error(errorHandler(error?.response?.data))
     }
@@ -86,8 +86,9 @@ export const changePassword = createAsyncThunk('change-password', async (data) =
     }
 })
 
-export const currentUser = createAsyncThunk('current-user', async () => {
+export const getCurrentUser = createAsyncThunk('getCurrentUser', async () => {
     const res = await axios.get('http://localhost:3000/api/v1/users/current-user')
+    // console.log(res)
     return res.data.data
 })
 
@@ -119,15 +120,15 @@ const authSlice = createSlice({
             state.status = false
             state.userData = null
         })
-        builder.addCase(currentUser.pending, (state) => {
+        builder.addCase(getCurrentUser.pending, (state) => {
             state.loading = true
         })
-        builder.addCase(currentUser.fulfilled, (state, action) => {
+        builder.addCase(getCurrentUser.fulfilled, (state, action) => {
             state.loading = false
             state.status = true
             state.userData = action.payload
         })
-        builder.addCase(currentUser.rejected, (state) => {
+        builder.addCase(getCurrentUser.rejected, (state) => {
             state.loading = false
             state.status = false
             state.userData = null

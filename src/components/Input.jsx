@@ -18,7 +18,7 @@ const Input = ({
                 id={id}
                 ref={ref}
                 {...props}
-                className={` px-3 py-2 bg-gray-900 text-white border border-black/10 outline-none rounded-lg duration-200 focus:bg-gray-900 w-full ${className}`}
+                className={` px-3 py-2 bg-[#121212] text-white border border-gray-600  outline-none  duration-200 focus:bg-[#212121] w-full ${className}`}
             />
         </div>
     )

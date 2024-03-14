@@ -10,7 +10,7 @@ const initialState = {
     subscribedChannels: []
 }
 
-const toggleSubscription = createAsyncThunk("toggleSubscription", async (channelId) => {
+export const toggleSubscription = createAsyncThunk("toggleSubscription", async (channelId) => {
     try {
         const res = await axios.post(`http://localhost:3000/api/v1/subscription/c/${channelId}`);
         return res.data.data
@@ -19,7 +19,7 @@ const toggleSubscription = createAsyncThunk("toggleSubscription", async (channel
     }
 })
 
-const Subscribers = createAsyncThunk("subscribers", async (channelId) => {
+export const Subscribers = createAsyncThunk("subscribers", async (channelId) => {
     try {
         const res = await axios.get(`http://localhost:3000/api/v1/subscription/c/${channelId}`);
         return res.data.data
@@ -28,7 +28,7 @@ const Subscribers = createAsyncThunk("subscribers", async (channelId) => {
     }
 })
 
-const subscribedChannel = createAsyncThunk("subscribedChannel", async (subscriberId) => {
+export const subscribedChannel = createAsyncThunk("subscribedChannel", async (subscriberId) => {
     try {
         const res = await axios.get(`http://localhost:3000/api/v1/subscription/c/${subscriberId}`);
         return res.data.data
@@ -47,7 +47,7 @@ const subscriptionSlice = createSlice({
         })
         builder.addCase(toggleSubscription.fulfilled, (state, action) => {
             state.loading = false;
-            state.isSubscribed = action.payload
+            state.isSubscribed = action.payload.subscribed
         })
         builder.addCase(Subscribers.pending, (state) => {
             state.loading = true;

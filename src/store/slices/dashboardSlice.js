@@ -10,7 +10,7 @@ const initialState = {
     channelVideos: []
 }
 
-const getChannelStats = createAsyncThunk("channelStats", async () => {
+export const getChannelStats = createAsyncThunk("channelStats", async () => {
     try {
         const res = await axios.get(`http://localhost:3000/api/v1/dashboard/stats`);
         message.success(res.data.data)
@@ -20,7 +20,7 @@ const getChannelStats = createAsyncThunk("channelStats", async () => {
     }
 })
 
-const getChannelVideos = createAsyncThunk("channelVideos", async () => {
+export const getChannelVideos = createAsyncThunk("channelVideos", async () => {
     try {
         const res = await axios.get(`http://localhost:3000/api/v1/dashboard/videos`);
         message.success(res.data.data)
@@ -47,7 +47,7 @@ const dashboardSlice = createSlice({
         })
         builder.addCase(getChannelVideos.fulfilled, (state, action) => {
             state.loading = false;
-            state.playlist = action.payload
+            state.channelVideos = action.payload
         })
     }
 })

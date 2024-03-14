@@ -9,7 +9,7 @@ const initialState = {
     likedVideos: []
 }
 
-const toggleVideoLike = createAsyncThunk("toggleVideoLike", async ( videoId ) => {
+export const toggleVideoLike = createAsyncThunk("toggleVideoLike", async ( videoId ) => {
     try {
         const res = await axios.post(`http://localhost:3000/api/v1/likes/toggle/v/${videoId}`);
         return res.data.data
@@ -18,7 +18,7 @@ const toggleVideoLike = createAsyncThunk("toggleVideoLike", async ( videoId ) =>
     }
 })
 
-const toggleCommentLike = createAsyncThunk("toggleCommentLike", async ({ commentId }) => {
+export const toggleCommentLike = createAsyncThunk("toggleCommentLike", async ({ commentId }) => {
     try {
         const res = await axios.post(`http://localhost:3000/api/v1/likes/toggle/c/${commentId}`);
         return res.data.data
@@ -27,7 +27,7 @@ const toggleCommentLike = createAsyncThunk("toggleCommentLike", async ({ comment
     }
 })
 
-const toggleTweetLike = createAsyncThunk("toggleTweetLike", async ({ tweetId }) => {
+export const toggleTweetLike = createAsyncThunk("toggleTweetLike", async ({ tweetId }) => {
     try {
         const res = await axios.post(`http://localhost:3000/api/v1/likes/toggle/t/${tweetId}`);
         return res.data.data

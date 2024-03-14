@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form'
-import { Input, Button, Icon, Loading } from './index.js'
+import { get, useForm } from 'react-hook-form'
+import { Input, Button, Icon, Loading, Logo } from './index.js'
 import { Link, useNavigate } from 'react-router-dom'
-import { currentUser, userLogin } from '../store/slices/authSlice.js'
+import { getCurrentUser, userLogin } from '../store/slices/authSlice.js'
 import { useDispatch, useSelector } from 'react-redux'
+import LoginSkeleton from '../skeleton/LoginSkeleton.jsx'
 
 
 const LogIn = () => {
@@ -22,31 +23,27 @@ const LogIn = () => {
             ? { email: data.username, password: data.password }
             : data
 
-        const response = await dispatch(userLogin(loginDetails))
-        const user = await dispatch(currentUser)
-        // console.log(response, " ", user)
+        const response = dispatch(userLogin(loginDetails))
+        dispatch(getCurrentUser())
 
         if (user && response?.payload) {
             navigate('/')
         }
     }
-    // console.log(loading)
-    // if (loading) {
-    //     return <Loading />
-    // }
 
     return (
         <>
             {loading ? <Loading />
                 :
-                <div className=' flex justify-center items-center w-full'>
-                    <div className=' max-w-3xl mx-auto shadow-lg border border-slate-600 rounded-lg px-10 py-6  bg-[#232323]  text-white'>
+                <div className=' w-full h-screen flex justify-center items-start text-white p-3'>
+                    <div className=' max-w-3xl mx-auto shadow-lg border border-gray-600 rounded-lg px-10 py-6 mt-20'>
                         <div className=' mb-4 flex justify-center items-center'>
-                            <Icon width=" w-24" />
+                            <Logo/>
                         </div>
                         <form onSubmit={handleSubmit(submit)}>
                             <div className=' space-y-5'>
                                 <Input
+                                    className="rounded-lg"
                                     label="Username / Email : "
                                     type="text"
                                     placeholder="example@gmail.com"
@@ -61,6 +58,7 @@ const LogIn = () => {
                                         </span>
                                     )}
                                 <Input
+                                    className="rounded-lg"
                                     label="Password : "
                                     type="password"
                                     placeholder="1kd074fjw0"
@@ -76,7 +74,7 @@ const LogIn = () => {
                                     )}
                                 <Button
                                     type='submit'
-                                    className=' w-full hover:bg-[#ae7aff]'
+                                    className=' w-full rounded-lg hover:bg-[#ae7aff] py-2'
                                 >
                                     Log in
                                 </Button>

@@ -10,6 +10,7 @@ const initialState = {
 
 export const createTweet = createAsyncThunk("createTweet", async (content) => {
     try {
+        console.log(content)
         const res = await axios.post("http://localhost:3000/api/v1/tweets", content);
         return res.data.data
     } catch (error) {

@@ -16,7 +16,19 @@ import { RiHome6Line } from "react-icons/ri";
 import { BiSolidLike } from "react-icons/bi";
 import { BiSolidDislike } from "react-icons/bi";
 import { HiOutlineDotsVertical } from "react-icons/hi";
-
+import { RiVideoAddLine } from "react-icons/ri";
+import { TiTick } from "react-icons/ti";
+import { ImBin } from "react-icons/im";
+import { GrEdit } from "react-icons/gr";
+import { MdOutlineSlowMotionVideo } from "react-icons/md";
+import { RxAvatar } from "react-icons/rx";
+import { FaRegEye, FaRegHeart } from "react-icons/fa";
+import { MdOutlineCloudUpload } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
+import { MdLightMode } from "react-icons/md";
+import { RiPlayList2Fill } from "react-icons/ri";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { IoMenu } from "react-icons/io5";
 
 export {
     RiFeedbackLine,
@@ -36,5 +48,19 @@ export {
     TbUserCheck,
     BiSolidLike,
     BiSolidDislike,
-    HiOutlineDotsVertical
+    HiOutlineDotsVertical,
+    RiVideoAddLine,
+    TiTick,
+    ImBin,
+    GrEdit,
+    MdOutlineSlowMotionVideo,
+    RxAvatar,
+    FaRegEye,
+    FaRegHeart,
+    MdOutlineCloudUpload,
+    MdDarkMode,
+    MdLightMode,
+    RiPlayList2Fill,
+    IoIosCloseCircleOutline,
+    IoMenu,
 }

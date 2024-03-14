@@ -7,6 +7,7 @@ import likeSlice from "./slices/likeSlice"
 import tweetSlice from "./slices/tweetSlice"
 import playlistSlice from "./slices/playlistSlice"
 import dashboardSlice from "./slices/dashboardSlice"
+import subscriptionSlice from "./slices/subscriptionSlice";
 
 
 const store = configureStore({
@@ -19,6 +20,7 @@ const store = configureStore({
         tweet: tweetSlice,
         playlist: playlistSlice,
         dashboard: dashboardSlice,
+        subscription: subscriptionSlice,
     }
 })
 
